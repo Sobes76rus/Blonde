@@ -1,7 +1,7 @@
 {{- $seo := .seo -}}
 <meta name="description" content="{{ $seo.description }}">
 <meta property="og:site_name" content="{{ $seo.site_name }}">
-<meta property="og:description" content="{{ $seo.description }}">
+<meta property="og:description" content="{{ $seo.description | plainify | replaceRE `\s+` ` ` | strings.TrimSpace | truncate 350 }}">
 <meta property="og:url" content="{{ .page.Permalink }}">
 <meta property="og:type" content="{{ $seo.type }}">
 <meta property="og:locale" content="{{ $seo.locale }}">
