@@ -6,7 +6,7 @@
   {{- $back_date := now.AddDate 0 0 (int (mul -1 $last_days)) }}
 
   {{ range where .Pages "Sitemap.Disable" "ne" true }}
-    {{- if and (.Permalink) (and (ge .Date $back_date) (eq .Type "post")) -}}
+    {{- if and (.Permalink) (or .IsHome (and (ge .Date $back_date) (and (eq .Type "post") .IsPage ))) -}}
     <url>
       <loc>{{ .Permalink }}</loc>{{ if not .Lastmod.IsZero }}
       <lastmod>{{ safeHTML ( .Lastmod.Format "2006-01-02T15:04:05-07:00" ) }}</lastmod>{{ end }}{{ with .Sitemap.ChangeFreq }}
