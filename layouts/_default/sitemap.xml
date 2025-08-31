@@ -5,7 +5,7 @@
   {{- $back_date := now.AddDate 0 0 (int (mul -1 $last_days)) }}
 
   {{ range where .Pages "Sitemap.Disable" "ne" true }}
-    {{- if and (.Permalink) (or .IsHome (and (ge .Date $back_date) (and (eq .Type "post") .IsPage ))) -}}
+    {{- if and (.Permalink) (and (ge .Date $back_date) (and (eq .Type "post") .IsPage )) -}}
     <url>
       <loc>{{ .Permalink }}</loc>
       <news:news>
