@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: {{ .Site.BaseURL }}sitemap.xml
-Sitemap: {{ .Site.BaseURL }}news-sitemap.xml
+Sitemap: {{ .Site.BaseURL }}sitemap-news.xml

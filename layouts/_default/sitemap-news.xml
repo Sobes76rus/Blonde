@@ -1,10 +1,10 @@
 {{ printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" | safeHTML }}
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
-  {{- $last_days := .Site.Params.sitemap_last_days }}
+  {{- $last_days := .Site.Params.sitemap_news_last_days }}
   {{- $back_date := now.AddDate 0 0 (int (mul -1 $last_days)) }}
 
-  {{ range where .Pages "Sitemap.Disable" "ne" true }}
+  {{ range where .Site.Pages "Sitemap.Disable" "ne" true }}
     {{- if and (.Permalink) (and (ge .Date $back_date) (and (eq .Type "post") .IsPage )) -}}
     <url>
       <loc>{{ .Permalink }}</loc>
