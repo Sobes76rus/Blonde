@@ -1,0 +1,22 @@
+{{ printf "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" | safeHTML }}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">
+  {{- $last_days := .Site.Params.sitemap_last_days }}
+  {{- $back_date := now.AddDate 0 0 (int (mul -1 $last_days)) }}
+
+  {{ range where .Pages "Sitemap.Disable" "ne" true }}
+    {{- if and (.Permalink) (and (ge .Date $back_date) (and (eq .Type "post") .IsPage )) -}}
+    <url>
+      <loc>{{ .Permalink }}</loc>
+      <news:news>
+        <news:publication>
+          <news:name>{{ safeHTML (.Site.Params.sitemap_news_name) }}</news:name>
+          <news:language>en</news:language>
+        </news:publication>
+        <news:publication_date>{{ safeHTML (.Date.Format "2006-01-02T15:04-07:00") }}</news:publication_date>
+        <news:title>{{ .Title }}</news:title>
+      </news:news>
+    </url>
+    {{- end -}}
+  {{ end }}
+</urlset>
