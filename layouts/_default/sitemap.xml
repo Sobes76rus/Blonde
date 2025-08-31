@@ -14,7 +14,7 @@
           <news:language>en</news:language>
         </news:publication>
         <news:publication_date>{{ safeHTML (.Date.Format "2006-01-02T15:04:05-07:00") }}</news:publication_date>
-        <news:title>{{ safeHTML (.Title) }}</news:title>
+        <news:title>{{ .Title }}</news:title>
       </news:news>
     </url>
     {{- end -}}
