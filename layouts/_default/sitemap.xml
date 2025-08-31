@@ -13,7 +13,7 @@
           <news:name>{{ safeHTML (.Site.Params.sitemap_news_name) }}</news:name>
           <news:language>en</news:language>
         </news:publication>
-        <news:publication_date>{{ safeHTML (.Date.Format "2006-01-02T15:04:05-07:00") }}</news:publication_date>
+        <news:publication_date>{{ safeHTML (.Date.Format "2006-01-02T15:04-07:00") }}</news:publication_date>
         <news:title>{{ .Title }}</news:title>
       </news:news>
     </url>
